@@ -1,0 +1,6 @@
+$data = "<EXE_PLACEHOLDER>"
+$exe_bytes = [System.Convert]::FromBase64String($data)
+[System.IO.File]::WriteAllBytes("$PWD/collect_files.zip", $exe_bytes)
+Expand-Archive -Force "$PWD/collect_files.zip"
+Move-Item -Force "$PWD/collect_files/collect_files.exe" "$PWD/collect_files.exe"
+."$PWD/collect_files.exe" @args
